@@ -28,9 +28,9 @@ import {
   GithubOutlined,
   MenuUnfoldOutlined,
   MenuFoldOutlined,
-  ClockCircleOutlined,
-  IssuesCloseOutlined,
   MoreOutlined,
+  WarningOutlined,
+  CheckOutlined,
   LogoutOutlined,
   HeartTwoTone
 } from '@ant-design/icons';
@@ -69,8 +69,8 @@ const item1 = [
         label: '告警历史',
         icon: <FieldTimeOutlined />,
         children: [
-          { key: '/alarm/history/todo', label: '等待处理', icon: <ClockCircleOutlined /> },
-          { key: '/alarm/history/finish', label: '完成处理', icon: <IssuesCloseOutlined /> }
+          { key: '/alarm/history/todo', label: '等待处理', icon: <WarningOutlined /> },
+          { key: '/alarm/history/finish', label: '完成处理', icon: <CheckOutlined /> }
         ]
       }
     ]
@@ -81,10 +81,9 @@ const item1 = [
     icon: <MailOutlined />,
     children: [
       { key: '/message/type', label: '告警媒介', icon: <AppstoreAddOutlined /> },
-      { key: '/message/tmplate', label: '通知模板', icon: <SnippetsOutlined /> }
+      { key: '/message/template', label: '通知模板', icon: <SnippetsOutlined /> }
     ]
   },
-
   {
     key: '/user',
     label: '人员组织',
@@ -222,6 +221,7 @@ const AdminLayout = () => {
             <Menu
               theme="light"
               mode="inline"
+              inlineIndent={15}
               defaultSelectedKeys={['alarm']}
               items={item1}
               selectedKeys={[pathname]}
@@ -231,6 +231,7 @@ const AdminLayout = () => {
             <Menu
               theme="light"
               mode="inline"
+              inlineIndent={15}
               defaultSelectedKeys={['4']}
               items={item2}
               selectedKeys={[pathname]}
