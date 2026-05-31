@@ -4,7 +4,7 @@ import SCard from '@/components/ui/s-card';
 const TemplateButton = () => {
   return (
     <Row>
-      <Col span={8}>
+      <Col span={12}>
         <SCard title="Button Group" description="New design button based on Ant Design Button">
           <Flex vertical gap="small">
             <Flex gap="small" wrap>
