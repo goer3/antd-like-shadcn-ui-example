@@ -27,6 +27,10 @@ export const RouteRules = [
           {
             path: '/template/form',
             element: RouteLazyLoad(() => import('@/pages/template/form'))
+          },
+          {
+            path: '/template/table',
+            element: RouteLazyLoad(() => import('@/pages/template/table'))
           }
         ]
       }

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Outlet, useNavigate, useLocation } from 'react-router-dom';
 import {
   FundOutlined,
@@ -29,7 +29,7 @@ import {
   MenuUnfoldOutlined,
   MenuFoldOutlined,
   MoreOutlined,
-  WarningOutlined,
+  WarningTwoTone,
   CheckOutlined,
   LogoutOutlined,
   HeartTwoTone
@@ -39,6 +39,7 @@ const { Header, Content, Footer, Sider } = Layout;
 import { Logo, DefaultAvatar } from '@/components/image';
 import { SiderDivider } from '@/components/common';
 import { GenerateGenderBadge } from '@/components/badge';
+import { CURRENT_VERSION } from '@/config';
 
 const item1 = [
   {
@@ -69,7 +70,7 @@ const item1 = [
         label: '告警历史',
         icon: <FieldTimeOutlined />,
         children: [
-          { key: '/alarm/history/todo', label: '等待处理', icon: <WarningOutlined /> },
+          { key: '/alarm/history/todo', label: '等待处理', icon: <WarningTwoTone twoToneColor="#eb2f96" /> },
           { key: '/alarm/history/finish', label: '完成处理', icon: <CheckOutlined /> }
         ]
       }
@@ -125,7 +126,8 @@ const item2 = [
     icon: <HeartTwoTone />,
     children: [
       { key: '/template/button', label: '按钮' },
-      { key: '/template/form', label: '表单' }
+      { key: '/template/form', label: '表单' },
+      { key: '/template/table', label: '表格' }
     ]
   },
   {
@@ -186,11 +188,23 @@ const AdminLayout = () => {
   const navigate = useNavigate();
   const { pathname } = useLocation();
 
+  // 版本提示
+  const [showVersionTip, setShowVersionTip] = useState(false);
+
+  useEffect(() => {
+    const savedVersion = localStorage.getItem('version');
+    if (savedVersion !== CURRENT_VERSION) {
+      setShowVersionTip(true);
+    }
+  }, []);
+
+  const dismissVersionTip = () => {
+    localStorage.setItem('version', CURRENT_VERSION);
+    setShowVersionTip(false);
+  };
+
   // 点击菜单跳转
-  const clickMenuItemHandler = React.useCallback(
-    ({ key }) => navigate(key),
-    [navigate]
-  );
+  const clickMenuItemHandler = React.useCallback(({ key }) => navigate(key), [navigate]);
 
   return (
     <>
@@ -200,7 +214,7 @@ const AdminLayout = () => {
           width={220}
           collapsedWidth={60}
           breakpoint="lg"
-          onBreakpoint={(broken) => {
+          onBreakpoint={broken => {
             console.log(broken);
           }}
           onCollapse={(collapsed, type) => {
@@ -269,28 +283,30 @@ const AdminLayout = () => {
         ></Button>
         <Layout>
           <Header></Header>
-          <Content style={{ margin: '10px' }}>
+          <Content>
             <Outlet />
           </Content>
           <Footer style={{ textAlign: 'center', lineHeight: '50px' }}>Ant Design ©2026 Created by Ant UED</Footer>
         </Layout>
       </Layout>
       {/* 版本提示 */}
-      <div className="s-tips">
-        {/* 素材：https://octodex.github.com/ */}
-        {/* <img src="https://octodex.github.com/images/tentocats.jpg" /> */}
-        <span className="s-tips__title">💥 新版本已经准备就绪</span>
-        <div className="s-tips__content">
-          当前版本为 <b>v1.10</b>，最新版本 <b>v1.10.11</b>，你可以前往{' '}
-          <a style={{ color: 'red' }} href="">
-            <GithubOutlined />
-          </a>{' '}
-          下载最新版本完成更新。
+      {showVersionTip && (
+        <div className="s-tips">
+          {/* 素材：https://octodex.github.com/ */}
+          {/* <img src="https://octodex.github.com/images/tentocats.jpg" /> */}
+          <span className="s-tips__title">💥 新版本已经准备就绪</span>
+          <div className="s-tips__content">
+            当前版本为 <b>v1.10</b>，最新版本 <b>{CURRENT_VERSION}</b>，你可以前往{' '}
+            <a style={{ color: 'red' }} href="">
+              <GithubOutlined />
+            </a>{' '}
+            下载最新版本完成更新。
+          </div>
+          <Button type="primary" block onClick={dismissVersionTip}>
+            我已知晓
+          </Button>
         </div>
-        <Button type="primary" block>
-          我已知晓
-        </Button>
-      </div>
+      )}
     </>
   );
 };

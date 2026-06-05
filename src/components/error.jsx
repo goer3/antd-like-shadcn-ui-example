@@ -1,10 +1,9 @@
-import React from 'react';
 import { Layout } from 'antd';
 import { Outlet } from 'react-router-dom';
 import { Logo } from '@/components/image';
 import { FooterText } from '@/components/text';
 
-const { Header, Content, Footer } = Layout;
+const { Content, Footer } = Layout;
 
 const ErrorLayout = () => {
   return (

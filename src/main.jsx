@@ -21,16 +21,24 @@ import { GenerateRoutes } from '@/router/rules';
 // 统一控制样式
 const customMainBg = '#FFFFFF';
 const customSiderBg = '#f7f8fa';
+const customMainColor = '#000000';
 const controlHeight = 28;
+const customColorBlue = '#0052d9';
 
 // 主题定制
 const themeConfig = {
   zeroRuntime: true,
   token: {
-    colorPrimary: '#000000',
-    colorPrimaryHover: '#000000',
+    colorPrimary: customMainColor,
+    colorPrimaryHover: customMainColor,
+    colorLinkHover: customMainColor,
+    colorLink: customColorBlue,
+    controlItemBgActive: '#0000000a',
+    controlItemBgHover: '#0000000a',
+    lineHeight: '20px',
     fontFamily: 'MiSans, serif',
     fontSize: 13,
+    controlInteractiveSize: 13,
     borderRadius: 0
   },
   components: {
@@ -44,9 +52,9 @@ const themeConfig = {
       siderBg: customSiderBg
     },
     Menu: {
-      iconSize: 14,
+      iconSize: 13,
       collapsedIconSize: 16,
-      itemColor: '#000000',
+      itemColor: customMainColor,
       itemHeight: 30,
       itemBg: customSiderBg,
       subMenuItemBg: customSiderBg,
@@ -55,20 +63,23 @@ const themeConfig = {
       itemMarginBlock: 4,
       itemActiveBg: '#e4e4e8',
       itemSelectedBg: '#e4e4e8',
-      itemSelectedColor: '#000000',
+      itemSelectedColor: customMainColor,
       dropdownWidth: 'auto'
     },
     Button: {
       contentFontSize: 12,
-      contentFontSizeSM: 11,
+      contentFontSizeSM: 12,
       defaultShadow: 'none',
       primaryShadow: 'none',
       dangerShadow: 'none',
       controlHeight: controlHeight,
-      controlHeightSM: 20
+      controlHeightSM: 24,
+      paddingInline: 10,
+      paddingInlineSM: 10,
+      blue6: customColorBlue
     },
     Form: {
-      labelHeight: controlHeight,
+      labelHeight: controlHeight
     },
     Input: {
       activeShadow: 'none',
@@ -76,15 +87,33 @@ const themeConfig = {
       warningActiveShadow: 'none',
       controlHeight: controlHeight,
       activeBorderColor: '#e5e5e5',
+      paddingBlockSM: 4
     },
     InputNumber: {
       controlHeight: controlHeight,
-      activeBorderColor: '#e5e5e5', 
+      activeBorderColor: '#e5e5e5'
     },
     Slider: {
       railSize: 8,
       handleSize: 8,
-      handleLineWidth: 1,
+      handleLineWidth: 1
+    },
+    Select: {
+      optionHeight: controlHeight,
+      optionLineHeight: '28px',
+      optionPadding: '0 10px',
+      optionSelectedBg: '#0000000a'
+    },
+    Table: {
+      lineHeight: '32px',
+      cellPaddingInline: 10,
+      cellPaddingBlock: 0
+    },
+    Pagination: {
+      itemSize: 20,
+      itemActiveBg: 'transparent',
+      itemActiveColor: customColorBlue,
+      itemActiveColorHover: customColorBlue
     }
   }
 };
