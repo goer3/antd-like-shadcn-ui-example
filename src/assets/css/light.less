@@ -691,12 +691,12 @@ body {
   transition: border-color 0.3s;
 
   &:hover {
-    border-color: #40a9ff;
+    border-color: @input-border-color;
   }
 
   &:focus-within {
-    border-color: #1890ff;
-    box-shadow: 0 0 0 2px rgba(24, 144, 255, 0.2);
+    border-color: @input-border-color;
+    box-shadow: none;
   }
 
   // validateStatus="error"
@@ -709,7 +709,7 @@ body {
 
     &:focus-within {
       border-color: @input-error-border-color;
-      box-shadow: 0 0 0 2px rgba(255, 77, 79, 0.2);
+      box-shadow: none;
     }
   }
 
