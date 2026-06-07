@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { AutoComplete, Button, Cascader, Checkbox, Col, Form, Input, Slider, InputNumber, DatePicker, Row, Select, Space } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
+import STextArea from '@/components/ui/s-textarea';
 import SCard from '@/components/ui/s-card';
 const { RangePicker } = DatePicker;
 
@@ -136,7 +137,7 @@ const options = [];
 for (let i = 10; i < 36; i++) {
   options.push({
     label: i.toString(36) + i,
-    value: i.toString(36) + i,
+    value: i.toString(36) + i
   });
 }
 
@@ -233,15 +234,29 @@ const TemplateForm = () => {
               <Input prefix={<UserOutlined />} placeholder="Username" />
             </Form.Item>
 
-            <Form.Item name="nickname" label="Nickname" tooltip="What do you want others to call you?" rules={[{ required: true, message: 'Please input your nickname!', whitespace: true }]}>
+            <Form.Item
+              name="nickname"
+              label="Nickname"
+              tooltip="What do you want others to call you?"
+              rules={[{ required: true, message: 'Please input your nickname!', whitespace: true }]}
+            >
               <Input />
             </Form.Item>
 
-            <Form.Item name="balance" label="Balance" tooltip="What do you want others to call you?" rules={[{ required: true, message: 'Please input your nickname!', whitespace: true }]}>
+            <Form.Item
+              name="balance"
+              label="Balance"
+              tooltip="What do you want others to call you?"
+              rules={[{ required: true, message: 'Please input your nickname!', whitespace: true }]}
+            >
               <Input prefix="￥" suffix="RMB" />
             </Form.Item>
 
-            <Form.Item name="residence" label="Habitual Residence" rules={[{ type: 'array', required: true, message: 'Please select your habitual residence!' }]}>
+            <Form.Item
+              name="residence"
+              label="Habitual Residence"
+              rules={[{ type: 'array', required: true, message: 'Please select your habitual residence!' }]}
+            >
               <Cascader options={residences} />
             </Form.Item>
 
@@ -268,7 +283,11 @@ const TemplateForm = () => {
             </Form.Item>
 
             <Form.Item name="intro" label="Intro" rules={[{ required: true, message: 'Please input Intro' }]}>
-              <Input.TextArea showCount maxLength={100} />
+              <Input.TextArea autoSize={{ minRows: 5 }} showCount maxLength={100} />
+            </Form.Item>
+
+            <Form.Item name="sIntro" label="Textarea" rules={[{ required: true, message: 'Please input Intro' }]}>
+              <STextArea autoSize={{ minRows: 5 }} showCount maxLength={100} />
             </Form.Item>
 
             <Form.Item name="gender" label="Gender" rules={[{ required: true, message: 'Please select gender!' }]}>
@@ -284,9 +303,15 @@ const TemplateForm = () => {
             </Form.Item>
 
             <Form.Item name="multipleSelect" label="Multiple Select">
-              <Select mode="multiple" allowClear style={{ width: '100%' }} 
-              placeholder="Please select" defaultValue={['a10', 'c12']} 
-              onChange={handleChange} options={options} />
+              <Select
+                mode="multiple"
+                allowClear
+                style={{ width: '100%' }}
+                placeholder="Please select"
+                defaultValue={['a10', 'c12']}
+                onChange={handleChange}
+                options={options}
+              />
             </Form.Item>
 
             <Form.Item label="DatePicker" name="DatePicker" rules={[{ required: true, message: 'Please input!' }]}>

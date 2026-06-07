@@ -112,8 +112,11 @@ const themeConfig = {
     Pagination: {
       itemSize: 20,
       itemActiveBg: 'transparent',
-      itemActiveColor: customColorBlue,
-      itemActiveColorHover: customColorBlue
+      itemActiveColor: 'red',
+      itemActiveColorHover: 'red'
+    },
+    Dropdown: {
+      paddingBlock: 5
     }
   }
 };

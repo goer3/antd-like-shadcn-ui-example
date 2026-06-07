@@ -11,11 +11,12 @@
 @base-footer-height: 50px;
 @base-logo-height: 26px;
 @control-height: 28px;
-@input-padding: 2.84px 10px;
+@input-padding: 3.34px 10px;
 @input-padding-sm: 1.45px 10px;
 @input-fill-bg: #e5e5e533;
 @input-border-color: #e5e5e5;
 @input-error-border-color: #ff4d4f;
+@input-textarea-height: 24px;
 
 html,
 body {
@@ -24,8 +25,8 @@ body {
 }
 
 * {
-  scrollbar-width: auto;
-  scrollbar-color: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #f7f8fa #ffffff;
 }
 
 ::-webkit-scrollbar {
@@ -36,11 +37,6 @@ body {
 
 ::-webkit-scrollbar-track {
   background-color: #ffffff;
-}
-
-::-webkit-scrollbar-thumb {
-  border-radius: 0;
-  background-color: #0000000a;
 }
 
 // Sider 容器
@@ -444,6 +440,10 @@ body {
   min-height: @control-height;
 }
 
+.ant-form-item-explain-error {
+  font-size: 12px;
+}
+
 .ant-input-filled {
   background: @input-fill-bg;
   border-color: @input-border-color;
@@ -490,6 +490,10 @@ body {
   padding-block: 0;
 }
 
+.ant-input-textarea-show-count .ant-input-data-count {
+  bottom: -20px;
+}
+
 .ant-picker-filled {
   border-color: @input-border-color;
   background: @input-fill-bg;
@@ -521,6 +525,12 @@ body {
   .ant-dropdown-menu-item-selected-active,
   .ant-dropdown-menu-submenu-title-selected-active {
     background-color: #0000000a;
+  }
+}
+
+.ant-table-filter-dropdown-btns {
+  .ant-btn-sm {
+    height: 20px;
   }
 }
 
@@ -671,3 +681,82 @@ body {
     border-left: none !important;
   }
 }
+
+// STextArea 样式
+.s-textarea {
+  display: flex;
+  border: 1px solid @input-border-color;
+  overflow: hidden;
+  background-color: #fff;
+  transition: border-color 0.3s;
+
+  &:hover {
+    border-color: #40a9ff;
+  }
+
+  &:focus-within {
+    border-color: #1890ff;
+    box-shadow: 0 0 0 2px rgba(24, 144, 255, 0.2);
+  }
+
+  // validateStatus="error"
+  &--error {
+    border-color: @input-error-border-color;
+
+    &:hover {
+      border-color: #ff7875;
+    }
+
+    &:focus-within {
+      border-color: @input-error-border-color;
+      box-shadow: 0 0 0 2px rgba(255, 77, 79, 0.2);
+    }
+  }
+
+  .ant-input {
+    padding: 5px;
+    line-height: @input-textarea-height;
+  }
+}
+
+.s-textarea__linenum {
+  display: flex;
+  flex-direction: column;
+  background-color: #fafafa;
+  border-right: 1px solid @input-border-color;
+  padding: 5px 0;
+  min-width: 40px;
+  user-select: none;
+  overflow: hidden;
+}
+
+.s-textarea__linenum-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: @input-textarea-height;
+  padding: 0 10px;
+  font-size: 12px;
+  color: #999;
+  line-height: @input-textarea-height;
+}
+
+.s-textarea__wrapper {
+  flex: 1;
+  display: flex;
+  overflow: hidden;
+}
+
+.s-textarea__input {
+  width: 100%;
+  border: none !important;
+  border-radius: 0;
+  resize: vertical;
+  font-size: 13px;
+  line-height: @input-textarea-height;
+
+  &:focus {
+    box-shadow: none !important;
+  }
+}
+
